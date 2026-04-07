@@ -17,7 +17,23 @@ pipeline {
             }
         }
 
-       stage('Test') { steps { echo 'Running tests...' // Run all calculator functions (example) sh ''' python3 - <<EOF from calculator import add, subtract, multiply, divide print("Add:", add(2, 3)) print("Subtract:", subtract(5, 2)) print("Multiply:", multiply(3, 4)) print("Divide:", divide(10, 2)) EOF ''' } }
+        stage('Test') {
+            steps {
+                echo 'Running tests...'
+                
+                // Run all calculator functions (example)
+                sh '''
+                python3 - <<EOF
+from calculator import add, subtract, multiply, divide
+
+print("Add:", add(2, 3))
+print("Subtract:", subtract(5, 2))
+print("Multiply:", multiply(3, 4))
+print("Divide:", divide(10, 2))
+EOF
+                '''
+            }
+        }
 
         stage('Deploy') {
             steps {
